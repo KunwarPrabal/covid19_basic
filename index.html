@@ -9,6 +9,47 @@
  <body> 
       <div class="container">
       <h1 class="text-center mt-5t"> Covid 19 Live Data in Table</h1>
+        <br><br>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+            <th>Total Cases</th>
+              <th>Total Deaths</th>
+              <th>Total Recovered</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="data">
+              
+              
+            </tr>
+          </tbody>
+        </table>
       </div> 
  </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    init() 
+    
+    function init(){ 
+      var url = "https://api.covidl9api.com/summary" 
+      var data = ''
+      $.get(url,function(data){
+        console.log(data.Global) 
+      data = '
+        
+        <td>${data.Global.TotalConfirmed}</td> 
+        <td>${data.Global.TotalDeaths}</td> 
+        <td>${data.Global.TotalRecovered}</td> 
+        
+        '
+        
+        $("#data").html(data)
+        
+      })
+    }
+  })
+  
+</script>
 </html> 
